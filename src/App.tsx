@@ -1,26 +1,32 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React,{useEffect, useState} from 'react'
+import Shop from './Shop'
+import MyCart from './MyCart'
+import { Routes, Route } from 'react-router-dom'
 
-function App() {
+
+const App:React.FC = () => {
+
+  const [cartItems, setCartItems] = useState<{item:object}[]>([])
+
+  const handleClick = (item: any) => {
+    setCartItems(cartItems=>[...cartItems,item])
+    console.log(cartItems)
+  }
+
+  const handleCartChange = (item: any) =>{
+    setCartItems(item)
+  }
+
+  useEffect(()=>{
+    console.log(cartItems)  
+  })
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+    <Routes>
+      <Route path="/" element={<Shop handleClick={handleClick} />}  />
+      <Route path="cart" element={<MyCart handleCartChange={handleCartChange} cart={cartItems} />}  />
+    </Routes> 
+  )
 }
 
-export default App;
+export default App

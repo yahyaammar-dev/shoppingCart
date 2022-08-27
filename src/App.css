@@ -36,3 +36,12 @@
     transform: rotate(360deg);
   }
 }
+
+
+
+.cartbtn{
+  background-color: rgb(68, 68, 255);
+  color: white;
+  margin: 1rem;
+  float: right;
+}
